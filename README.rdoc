@@ -14,8 +14,6 @@ A Library to Automate User Interactions
  robot.mouse_move(250, 250)
  robot.mouse_release
  
-=== Post Notification
-
 == Contributing to mac-robot
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
