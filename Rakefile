@@ -17,13 +17,32 @@ Jeweler::Tasks.new do |gem|
   gem.name = "mac-robot"
   gem.homepage = "http://github.com/youpy/mac-robot"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{A Library to Automate User Interactions}
+  gem.description = %Q{A Library to Automate User Interactions}
   gem.email = "youpy@buycheapviagraonlinenow.com"
   gem.authors = ["youpy"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
+
+# rule to build the extension: this says
+# that the extension should be rebuilt
+# after any change to the files in ext
+ext_names = %w/event_dispatcher/
+ext_names.each do |ext_name|
+  file "lib/#{ext_name}.bundle" =>
+    Dir.glob("ext/#{ext_name}/*{.rb,.m}") do
+    Dir.chdir("ext/#{ext_name}") do
+      # this does essentially the same thing
+      # as what RubyGems does
+      ruby "extconf.rb"
+      sh "make"
+    end
+    cp "ext/#{ext_name}/#{ext_name}.bundle", "lib/"
+  end
+
+  task :spec => "lib/#{ext_name}.bundle"
+end
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
@@ -31,19 +50,4 @@ RSpec::Core::RakeTask.new(:spec) do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
-  spec.rcov = true
-end
-
 task :default => :spec
-
-require 'rdoc/task'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "mac-robot #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
