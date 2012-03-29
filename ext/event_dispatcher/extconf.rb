@@ -1,3 +1,7 @@
+if RUBY_VERSION < '1.9.0'
+  $LOAD_PATH.unshift(File.dirname(__FILE__))
+end
+
 require "mkmf"
 
 # Name your extension
