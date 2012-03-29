@@ -78,6 +78,25 @@ static VALUE cEventDispatcher_dispatchMouseEvent(int argc, VALUE *argv, VALUE se
   return Qnil;
 }
 
+// http://forums.macrumors.com/showthread.php?t=780577
+static VALUE cEventDispatcher_dispatchKeyboardEvent(int argc, VALUE *argv, VALUE self)
+{
+  VALUE keycode, keydown;
+  CGEventRef event;
+
+  rb_scan_args(argc, argv, "2", &keycode, &keydown);
+
+  event = CGEventCreateKeyboardEvent(
+                                  NULL,
+                                  (CGKeyCode)NUM2INT(keycode),
+                                  (bool)NUM2INT(keydown));
+
+  CGEventPost(kCGHIDEventTap, event);
+  CFRelease(event);
+
+  return Qnil;
+}
+
 void Init_event_dispatcher(void){
   VALUE rb_mMac, rb_cRobot;
 
@@ -86,4 +105,5 @@ void Init_event_dispatcher(void){
   rb_cEventDispatcher = rb_define_class_under(rb_cRobot, "EventDispatcher", rb_cObject);
   rb_define_singleton_method(rb_cEventDispatcher, "new", cEventDispatcher_new, -1);
   rb_define_method(rb_cEventDispatcher, "dispatchMouseEvent", cEventDispatcher_dispatchMouseEvent, -1);
+  rb_define_method(rb_cEventDispatcher, "dispatchKeyboardEvent", cEventDispatcher_dispatchKeyboardEvent, -1);
 }

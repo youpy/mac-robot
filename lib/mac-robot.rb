@@ -14,6 +14,7 @@ module Mac
       @x = 0
       @y = 0
       @state = :mouse_up
+      @dispatcher = EventDispatcher.new
     end
 
     def mouse_press(button = :left)
@@ -33,11 +34,22 @@ module Mac
       mouse_event(:left, :mouse_move)
     end
 
+    def key_press(keycode)
+      keyboard_event(keycode, 1)
+    end
+
+    def key_release(keycode)
+      keyboard_event(keycode, 0)
+    end
+
     private
 
     def mouse_event(button, type)
-      dispatcher = EventDispatcher.new
-      dispatcher.dispatchMouseEvent(@x, @y, BUTTONS[button], type)
+      @dispatcher.dispatchMouseEvent(@x, @y, BUTTONS[button], type)
+    end
+
+    def keyboard_event(keycode, keydown)
+      @dispatcher.dispatchKeyboardEvent(keycode, keydown)
     end
   end
 end
