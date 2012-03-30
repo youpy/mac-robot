@@ -3,6 +3,9 @@ require 'util'
 
 module Mac
   class Robot
+    class Error < StandardError; end
+    class OutOfResolution < Error; end
+
     attr_reader :x, :y
 
     BUTTONS = {
@@ -44,8 +47,15 @@ module Mac
     end
 
     def get_pixel_color(x, y)
+      raise OutOfResolution if x < 0 || y < 0
+      raise OutOfResolution if display_pixel_size.width < x || display_pixel_size.height < y
+
       color = Util.get_pixel_color(x, y)
       Struct.new(:red, :green, :blue, :alpha).new(*color)
+    end
+
+    def display_pixel_size
+      @screen ||= Struct.new(:width, :height).new(*Util.get_display_pixel_size)
     end
 
     private

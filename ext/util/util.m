@@ -32,6 +32,21 @@ static VALUE mUtil_get_pixel_color(int argc, VALUE *argv, VALUE self)
   return result;
 }
 
+static VALUE mUtil_get_display_pixel_size(int argc, VALUE *argv, VALUE self)
+{
+  int width, height;
+  VALUE result;
+
+  width = (int)CGDisplayPixelsWide((CGDirectDisplayID)0);
+  height = (int)CGDisplayPixelsHigh((CGDirectDisplayID)0);
+
+  result = rb_ary_new();
+  rb_ary_push(result, INT2NUM(width));
+  rb_ary_push(result, INT2NUM(height));
+
+  return result;
+}
+
 void Init_util(void){
   VALUE rb_mMac, rb_cRobot, rb_mUtil;
 
@@ -39,4 +54,5 @@ void Init_util(void){
   rb_cRobot = rb_define_class_under(rb_mMac, "Robot", rb_cObject);
   rb_mUtil = rb_define_module_under(rb_cRobot, "Util");
   rb_define_singleton_method(rb_mUtil, "get_pixel_color", mUtil_get_pixel_color, -1);
+  rb_define_singleton_method(rb_mUtil, "get_display_pixel_size", mUtil_get_display_pixel_size, -1);
 }

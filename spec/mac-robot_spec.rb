@@ -25,12 +25,24 @@ describe Mac::Robot do
   end
 
   describe 'color' do
-    it 'should get color from given coodinate' do
+    it 'should get color from given coordinate' do
       color = subject.get_pixel_color(0, 0)
       color.red.should be_a_kind_of(Float)
       color.green.should be_a_kind_of(Float)
       color.blue.should be_a_kind_of(Float)
       color.alpha.should be_a_kind_of(Float)
+    end
+
+    it 'should raise if given coordinate is out of resolution' do
+      [9999, -1].each do |p|
+        lambda {
+          subject.get_pixel_color(p, 0)
+        }.should raise_error(Mac::Robot::OutOfResolution)
+
+        lambda {
+          subject.get_pixel_color(0, p)
+        }.should raise_error(Mac::Robot::OutOfResolution)
+      end
     end
   end
 end
