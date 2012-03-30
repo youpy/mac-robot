@@ -17,8 +17,8 @@ A Library to Automate User Interactions
 === Automate Keyboard
 
  [0x04, 0x0e, 0x25, 0x25, 0x1f].each do |keycode|
-   subject.key_press(keycode)
-   subject.key_release(keycode)
+   robot.key_press(keycode)
+   robot.key_release(keycode)
  end
  
 == Contributing to mac-robot
