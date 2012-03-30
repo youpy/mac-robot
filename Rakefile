@@ -28,7 +28,7 @@ Jeweler::RubygemsDotOrgTasks.new
 # rule to build the extension: this says
 # that the extension should be rebuilt
 # after any change to the files in ext
-ext_names = %w/event_dispatcher/
+ext_names = %w/event_dispatcher util/
 ext_names.each do |ext_name|
   CLEAN.include Dir.glob("ext/#{ext_name}/*{.o,.log}")
   CLEAN.include "ext/#{ext_name}/Makefile"

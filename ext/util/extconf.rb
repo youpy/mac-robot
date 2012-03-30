@@ -5,12 +5,12 @@ end
 require "mkmf"
 
 # Name your extension
-extension_name = 'event_dispatcher'
+extension_name = 'util'
 
 # Set your target name
 dir_config(extension_name)
 
-$LDFLAGS += ' -framework ApplicationServices'
+$LDFLAGS += ' -framework ApplicationServices -framework AppKit'
 
 have_header(extension_name)
 

@@ -1,4 +1,5 @@
 require 'event_dispatcher'
+require 'util'
 
 module Mac
   class Robot
@@ -40,6 +41,11 @@ module Mac
 
     def key_release(keycode)
       keyboard_event(keycode, 0)
+    end
+
+    def get_pixel_color(x, y)
+      color = Util.get_pixel_color(x, y)
+      Struct.new(:red, :green, :blue, :alpha).new(*color)
     end
 
     private

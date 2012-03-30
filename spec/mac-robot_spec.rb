@@ -23,4 +23,14 @@ describe Mac::Robot do
       end
     end
   end
+
+  describe 'color' do
+    it 'should get color from given coodinate' do
+      color = subject.get_pixel_color(0, 0)
+      color.red.should be_a_kind_of(Float)
+      color.green.should be_a_kind_of(Float)
+      color.blue.should be_a_kind_of(Float)
+      color.alpha.should be_a_kind_of(Float)
+    end
+  end
 end
