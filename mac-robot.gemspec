@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mac-robot"
-  s.version = "0.2.0"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["youpy"]
-  s.date = "2012-04-10"
+  s.date = "2012-06-17"
   s.description = "A Library to Automate User Interactions"
   s.email = "youpy@buycheapviagraonlinenow.com"
   s.extensions = ["ext/event_dispatcher/extconf.rb", "ext/util/extconf.rb"]
@@ -34,13 +34,14 @@ Gem::Specification.new do |s|
     "ext/util/util.h",
     "ext/util/util.m",
     "lib/mac-robot.rb",
+    "mac-robot.gemspec",
     "spec/mac-robot_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/youpy/mac-robot"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.24"
   s.summary = "A Library to Automate User Interactions"
 
   if s.respond_to? :specification_version then
