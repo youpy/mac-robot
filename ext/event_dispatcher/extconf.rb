@@ -12,6 +12,12 @@ dir_config(extension_name)
 
 $LDFLAGS += ' -framework ApplicationServices'
 
+begin
+  MACRUBY_VERSION # Only MacRuby has this constant.
+  $CFLAGS += ' -fobjc-gc' # Enable MacOSX's GC for MacRuby
+rescue
+end
+
 have_header(extension_name)
 
 # Do the work
