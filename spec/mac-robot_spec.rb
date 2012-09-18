@@ -15,6 +15,15 @@ describe Mac::Robot do
     end
   end
 
+  describe 'scroll wheel event' do
+    it 'should simulate scroll wheel event' do
+      subject.scroll_wheel_line(:y => 10)  # down 10 lines
+      subject.scroll_wheel(:y => -10)      # up 10 lines
+      subject.scroll_wheel_pixel(:x => 10, :y => -20, :z => 5)
+      subject.scroll_wheel_pixel(:y => 20, :x => -10, :z => -5)
+    end
+  end
+
   describe 'keyboard event' do
     it 'should simulate keyboard event' do
       [0x04, 0x0e, 0x25, 0x25, 0x1f].each do |keycode|
