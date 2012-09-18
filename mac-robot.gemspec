@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mac-robot"
-  s.version = "0.2.3"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["youpy"]
-  s.date = "2012-06-17"
+  s.date = "2012-09-18"
   s.description = "A Library to Automate User Interactions"
   s.email = "youpy@buycheapviagraonlinenow.com"
   s.extensions = ["ext/event_dispatcher/extconf.rb", "ext/util/extconf.rb"]
