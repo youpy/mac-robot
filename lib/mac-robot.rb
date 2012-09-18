@@ -79,24 +79,20 @@ module Mac
     end
 
     def scroll_count_extract(args = {})
-      # default values
-      scroll_y = 0
-      scroll_x = 0
-      scroll_z = 0
+      # java.awt.Robot
+      # http://docs.oracle.com/javase/1.4.2/docs/api/java/awt/Robot.html#mouseWheel%28int%29
+      scroll_x = 0 # x > 0 => right
+      scroll_y = 0 # y > 0 => down
+      scroll_z = 0 # z > 0 => towards
 
       args.each do |key, value|
         case key
-        when :up
-          scroll_y += value
-        when :down
-          scroll_y -= value
-        when :left
-          scroll_x += value
-        when :right
+        when :x
           scroll_x -= value
-        when :front, :back
-          warn "direction `#{key.to_s}' is not implemented."
-          # TODO: not implemented. positive value means front or back?
+        when :y
+          scroll_y -= value
+        when :z
+          scroll_z -= value
         end
       end
 
