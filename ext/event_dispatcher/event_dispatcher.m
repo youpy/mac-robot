@@ -16,6 +16,8 @@ VALUE createInstance() {
   return Data_Wrap_Struct(rb_cEventDispatcher, 0, cEventDispatcher_free, obj);
 }
 
+// https://developer.apple.com/library/mac/documentation/Carbon/Reference/QuartzEventServicesRef/Reference/reference.html#//apple_ref/doc/uid/TP40003550-CH3g-C016985
+// XXX: support right button and center button
 CGEventType getEventTypeFromValue(VALUE value)
 {
   const char *typeStr;
@@ -29,6 +31,8 @@ CGEventType getEventTypeFromValue(VALUE value)
     type = kCGEventLeftMouseUp;
   } else if(strcmp(typeStr, "mouse_move") == 0) {
     type = kCGEventMouseMoved;
+  } else if(strcmp(typeStr, "mouse_drag") == 0) {
+    type = kCGEventLeftMouseDragged;
   } else {
     type = kCGEventNull;
   }

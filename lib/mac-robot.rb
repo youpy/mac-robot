@@ -38,6 +38,13 @@ module Mac
       mouse_event(:left, :mouse_move)
     end
 
+    def mouse_drag(x, y)
+      @x = x
+      @y = y
+
+      mouse_event(:left, :mouse_drag)
+    end
+
     def key_press(keycode)
       keyboard_event(keycode, 1)
     end
