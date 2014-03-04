@@ -66,6 +66,15 @@ module Mac
       raise OutOfResolution if x < 0 || y < 0
       raise OutOfResolution if display_pixel_size.width < x || display_pixel_size.height < y
 
+      # workarownd for exeption occurs when x == display_pixel_size.width
+      #
+      # *** Assertion failure in -[NSBitmapImageRep initWithCGImage:], /SourceCache/AppKit/AppKit-1265/AppKit.subproj/NSBitmapImageRep.m:1286
+      # An uncaught exception was raised
+      # Invalid parameter not satisfying: cgImage != NULL
+      if display_pixel_size.width == x
+        x = x - 0.1
+      end
+
       color = Util.get_pixel_color(x, y)
       Struct.new(:red, :green, :blue, :alpha).new(*color)
     end

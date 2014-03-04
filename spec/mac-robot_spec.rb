@@ -53,5 +53,15 @@ describe Mac::Robot do
         }.should raise_error(Mac::Robot::OutOfResolution)
       end
     end
+
+    it 'should get color from rightmost pixel' do
+      display_pixel_size = subject.display_pixel_size
+
+      color = subject.get_pixel_color(display_pixel_size.width, 0)
+      color.red.should be_a_kind_of(Float)
+      color.green.should be_a_kind_of(Float)
+      color.blue.should be_a_kind_of(Float)
+      color.alpha.should be_a_kind_of(Float)
+    end
   end
 end
