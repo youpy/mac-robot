@@ -64,4 +64,12 @@ describe Mac::Robot do
       color.alpha.should be_a_kind_of(Float)
     end
   end
+
+  describe 'current mouse location' do
+    it 'should have current mouse location' do
+      subject.mouse_move(20, 0)
+      subject.mouse_current_location.x.should eql(20)
+      subject.mouse_current_location.y.should eql(0)
+    end
+  end
 end
