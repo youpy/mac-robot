@@ -47,6 +47,21 @@ static VALUE mUtil_get_display_pixel_size(int argc, VALUE *argv, VALUE self)
   return result;
 }
 
+static VALUE mUtil_get_mouse_current_location(int argc, VALUE *argv, VALUE self)
+{
+  VALUE result;
+  CGEventRef event;
+
+  event = CGEventCreate(NULL);
+  CGPoint loc = CGEventGetLocation(event);
+
+  result = rb_ary_new();
+  rb_ary_push(result, INT2NUM(loc.x));
+  rb_ary_push(result, INT2NUM(loc.y));
+
+  return result;
+}
+
 void Init_util(void){
   VALUE rb_mMac, rb_cRobot, rb_mUtil;
 
@@ -55,4 +70,5 @@ void Init_util(void){
   rb_mUtil = rb_define_module_under(rb_cRobot, "Util");
   rb_define_singleton_method(rb_mUtil, "get_pixel_color", mUtil_get_pixel_color, -1);
   rb_define_singleton_method(rb_mUtil, "get_display_pixel_size", mUtil_get_display_pixel_size, -1);
+  rb_define_singleton_method(rb_mUtil, "get_mouse_current_location", mUtil_get_mouse_current_location, -1);
 }

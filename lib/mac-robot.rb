@@ -17,6 +17,7 @@ module Mac
     def initialize
       @x = 0
       @y = 0
+              
       @state = :mouse_up
       @dispatcher = EventDispatcher.new
     end
@@ -43,6 +44,11 @@ module Mac
       @y = y
 
       mouse_event(:left, :mouse_drag)
+    end
+    
+    def mouse_current_location
+      loc = Util.get_mouse_current_location
+      Struct.new(:x, :y).new(*loc)
     end
 
     def key_press(keycode)
