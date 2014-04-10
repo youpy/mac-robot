@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "mac-robot"
-  s.version = "0.4.1"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["youpy"]
-  s.date = "2014-03-04"
+  s.date = "2014-04-10"
   s.description = "A Library to Automate User Interactions"
   s.email = "youpy@buycheapviagraonlinenow.com"
   s.extensions = ["ext/event_dispatcher/extconf.rb", "ext/util/extconf.rb"]
@@ -41,11 +41,11 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/youpy/mac-robot"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.24"
+  s.rubygems_version = "2.0.14"
   s.summary = "A Library to Automate User Interactions"
 
   if s.respond_to? :specification_version then
-    s.specification_version = 3
+    s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
