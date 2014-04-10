@@ -14,6 +14,9 @@ A Library to Automate User Interactions
  robot.mouse_move(250, 250)
  robot.mouse_drag(100, 200)
  robot.mouse_release
+
+ robot.mouse_current_location # => 100, 200
+
  robot.scroll_wheel(:x => 10, :y => -20, :z => 5)
 
 === Automate keyboard
