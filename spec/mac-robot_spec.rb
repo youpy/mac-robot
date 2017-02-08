@@ -9,8 +9,11 @@ describe Mac::Robot do
   describe 'mouse event' do
     it 'should simulate mouse event' do
       subject.mouse_move(20, 0)
+      sleep 0.2
       subject.mouse_press(:left)
-      subject.mouse_move(20, 250)
+      sleep 0.2
+      subject.mouse_move(20, 200)
+      sleep 0.2
       subject.mouse_release(:left)
     end
   end
