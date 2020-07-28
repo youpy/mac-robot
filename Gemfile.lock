@@ -27,7 +27,7 @@ GEM
       nokogiri (>= 1.5.10)
       rake
       rdoc
-    json (2.0.3)
+    json (2.3.0)
     jwt (2.2.1)
     mini_portile2 (2.4.0)
     multi_json (1.14.1)
