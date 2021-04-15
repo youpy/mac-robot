@@ -1,5 +1,5 @@
-require 'event_dispatcher'
-require 'util'
+require 'event_dispatcher.h'
+require 'util.h'
 
 module Mac
   class Robot
@@ -17,7 +17,7 @@ module Mac
     def initialize
       @x = 0
       @y = 0
-              
+
       @state = :mouse_up
       @dispatcher = EventDispatcher.new
     end
@@ -45,7 +45,7 @@ module Mac
 
       mouse_event(:left, :mouse_drag)
     end
-    
+
     def mouse_current_location
       loc = Util.get_mouse_current_location
       Struct.new(:x, :y).new(*loc)

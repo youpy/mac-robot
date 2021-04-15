@@ -5,7 +5,7 @@ end
 require "mkmf"
 
 # Name your extension
-extension_name = 'event_dispatcher'
+extension_name = 'event_dispatcher.h'
 
 # Set your target name
 dir_config(extension_name)

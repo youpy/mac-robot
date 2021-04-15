@@ -5,7 +5,7 @@ end
 require "mkmf"
 
 # Name your extension
-extension_name = 'util'
+extension_name = 'util.h'
 
 # Set your target name
 dir_config(extension_name)
