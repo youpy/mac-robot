@@ -5,7 +5,8 @@ end
 require "mkmf"
 
 # Name your extension
-extension_name = 'event_dispatcher.h'
+extension_name = 'event_dispatcher'
+header_name = extension_name + '.h'
 
 # Set your target name
 dir_config(extension_name)
@@ -18,7 +19,7 @@ begin
 rescue
 end
 
-have_header(extension_name)
+have_header(header_name)
 
 # Do the work
 create_makefile(extension_name)
