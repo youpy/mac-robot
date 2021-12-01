@@ -1,5 +1,5 @@
-require 'event_dispatcher.h'
-require 'util.h'
+require 'event_dispatcher'
+require 'util'
 
 module Mac
   class Robot
