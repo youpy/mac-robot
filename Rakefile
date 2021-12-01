@@ -11,8 +11,8 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
+require 'juwelier'
+Juwelier::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "mac-robot"
   gem.homepage = "http://github.com/youpy/mac-robot"
@@ -23,7 +23,7 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["youpy"]
   # dependencies defined in Gemfile
 end
-Jeweler::RubygemsDotOrgTasks.new
+Juwelier::RubygemsDotOrgTasks.new
 
 # rule to build the extension: this says
 # that the extension should be rebuilt
