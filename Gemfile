@@ -6,9 +6,9 @@ source "http://rubygems.org"
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem "rake", "< 11.0"
+  gem "rake", ">= 12.3.3"
   gem "json", "~> 2.5.1"
-  gem "rspec", "~> 2.8.0"
+  gem "rspec", "~> 3.10.0"
   gem "bundler"
   gem "juwelier", "~> 2.4.9"
 end

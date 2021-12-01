@@ -39,21 +39,21 @@ describe Mac::Robot do
   describe 'color' do
     it 'should get color from given coordinate' do
       color = subject.get_pixel_color(0, 0)
-      color.red.should be_a_kind_of(Float)
-      color.green.should be_a_kind_of(Float)
-      color.blue.should be_a_kind_of(Float)
-      color.alpha.should be_a_kind_of(Float)
+      expect(color.red).to be_a_kind_of(Float)
+      expect(color.green).to be_a_kind_of(Float)
+      expect(color.blue).to be_a_kind_of(Float)
+      expect(color.alpha).to be_a_kind_of(Float)
     end
 
     it 'should raise if given coordinate is out of resolution' do
       [9999, -1].each do |p|
-        lambda {
+        expect {
           subject.get_pixel_color(p, 0)
-        }.should raise_error(Mac::Robot::OutOfResolution)
+        }.to raise_error(Mac::Robot::OutOfResolution)
 
-        lambda {
+        expect {
           subject.get_pixel_color(0, p)
-        }.should raise_error(Mac::Robot::OutOfResolution)
+        }.to raise_error(Mac::Robot::OutOfResolution)
       end
     end
 
@@ -61,18 +61,18 @@ describe Mac::Robot do
       display_pixel_size = subject.display_pixel_size
 
       color = subject.get_pixel_color(display_pixel_size.width, 0)
-      color.red.should be_a_kind_of(Float)
-      color.green.should be_a_kind_of(Float)
-      color.blue.should be_a_kind_of(Float)
-      color.alpha.should be_a_kind_of(Float)
+      expect(color.red).to be_a_kind_of(Float)
+      expect(color.green).to be_a_kind_of(Float)
+      expect(color.blue).to be_a_kind_of(Float)
+      expect(color.alpha).to be_a_kind_of(Float)
     end
   end
 
   describe 'current mouse location' do
     it 'should have current mouse location' do
       subject.mouse_move(20, 0)
-      subject.mouse_current_location.x.should eql(20)
-      subject.mouse_current_location.y.should eql(0)
+      expect(subject.mouse_current_location.x).to eql(20)
+      expect(subject.mouse_current_location.y).to eql(0)
     end
   end
 end
