@@ -3,16 +3,14 @@ require 'util'
 
 module Mac
   class Robot
-    class Error < StandardError; end
-    class OutOfResolution < Error; end
+    class Error < StandardError
+    end
+    class OutOfResolution < Error
+    end
 
     attr_reader :x, :y
 
-    BUTTONS = {
-      :left => 0,
-      :right => 1,
-      :center => 2
-    }
+    BUTTONS = { left: 0, right: 1, center: 2 }
 
     def initialize
       @x = 0
@@ -70,16 +68,16 @@ module Mac
 
     def get_pixel_color(x, y)
       raise OutOfResolution if x < 0 || y < 0
-      raise OutOfResolution if display_pixel_size.width < x || display_pixel_size.height < y
+      if display_pixel_size.width < x || display_pixel_size.height < y
+        raise OutOfResolution
+      end
 
       # workarownd for exeption occurs when x == display_pixel_size.width
       #
       # *** Assertion failure in -[NSBitmapImageRep initWithCGImage:], /SourceCache/AppKit/AppKit-1265/AppKit.subproj/NSBitmapImageRep.m:1286
       # An uncaught exception was raised
       # Invalid parameter not satisfying: cgImage != NULL
-      if display_pixel_size.width == x
-        x = x - 0.1
-      end
+      x = x - 0.1 if display_pixel_size.width == x
 
       color = Util.get_pixel_color(x, y)
       Struct.new(:red, :green, :blue, :alpha).new(*color)
@@ -97,7 +95,13 @@ module Mac
 
     def scroll_wheel_event(unit, scroll_y, scroll_x = 0, scroll_z = 0)
       wheel_count = 3
-      @dispatcher.dispatchScrollWheelEvent(unit, wheel_count, scroll_y, scroll_x, scroll_z)
+      @dispatcher.dispatchScrollWheelEvent(
+        unit,
+        wheel_count,
+        scroll_y,
+        scroll_x,
+        scroll_z
+      )
     end
 
     def scroll_count_extract(args = {})
@@ -118,7 +122,7 @@ module Mac
         end
       end
 
-      return [scroll_y, scroll_x, scroll_z]
+      return scroll_y, scroll_x, scroll_z
     end
 
     def keyboard_event(keycode, keydown)
