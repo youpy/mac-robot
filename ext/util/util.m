@@ -15,7 +15,8 @@ static VALUE mUtil_get_pixel_color(int argc, VALUE *argv, VALUE self)
   intX = NUM2INT(x);
   intY = NUM2INT(y);
 
-  image = CGDisplayCreateImageForRect((CGDirectDisplayID)0, CGRectMake(intX, intY, 1, 1));
+  CGDirectDisplayID displayID = CGMainDisplayID();
+  image = CGDisplayCreateImageForRect(displayID, CGRectMake(intX, intY, 1, 1));
   bitmap = [[NSBitmapImageRep alloc] initWithCGImage:image];
   CGImageRelease(image);
   color = [bitmap colorAtX:0 y:0];
