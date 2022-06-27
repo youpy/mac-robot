@@ -38,8 +38,9 @@ static VALUE mUtil_get_display_pixel_size(int argc, VALUE *argv, VALUE self)
   int width, height;
   VALUE result;
 
-  width = (int)CGDisplayPixelsWide((CGDirectDisplayID)0);
-  height = (int)CGDisplayPixelsHigh((CGDirectDisplayID)0);
+  CGDirectDisplayID displayID = CGMainDisplayID();
+  width = (int)CGDisplayPixelsWide(displayID);
+  height = (int)CGDisplayPixelsHigh(displayID);
 
   result = rb_ary_new();
   rb_ary_push(result, INT2NUM(width));
